@@ -26,15 +26,19 @@ namespace TreeCopier.WinForms
             AllSpaces r = confSpaceService.Execute();
             this.MaincomboBox.ValueMember = Strings.KEY;
             this.MaincomboBox.DisplayMember = Strings.NAME;
+            this.MaincomboBox.SelectedIndex = -1;
             this.MaincomboBox.DataSource = r.results;
 
-            this.MaincomboBox.SelectedIndex = -1;
+            
 
             AllSpaces r2 = confSpaceService.Execute();
 
             this.TargetcomboBox.ValueMember = Strings.KEY;
             this.TargetcomboBox.DisplayMember = Strings.NAME;
+            this.TargetcomboBox.SelectedIndex = -1;
             this.TargetcomboBox.DataSource = r2.results;
+
+
         }
 
         public void Log(string message)
