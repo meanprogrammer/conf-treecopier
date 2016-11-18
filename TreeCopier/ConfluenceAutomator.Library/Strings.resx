@@ -117,10 +117,61 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="ConfluenceBackgroundWorker.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="ConfluenceBackgroundWorker2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>227, 17</value>
-  </metadata>
+  <data name="APPLICATION_JSON" xml:space="preserve">
+    <value>application/json</value>
+  </data>
+  <data name="ARE_YOU_SURE_1" xml:space="preserve">
+    <value>Are you sure to exit this application?</value>
+  </data>
+  <data name="BASEURL_KEY" xml:space="preserve">
+    <value>baseUrl</value>
+  </data>
+  <data name="BASIC" xml:space="preserve">
+    <value>Basic</value>
+  </data>
+  <data name="CHILDPAGE_PATH" xml:space="preserve">
+    <value>/child/page</value>
+  </data>
+  <data name="CREATE_PAGE_URL_KEY" xml:space="preserve">
+    <value>CreatePageUrl</value>
+  </data>
+  <data name="CREATE_SPACEURL_KEY" xml:space="preserve">
+    <value>CreateSpaceUrl</value>
+  </data>
+  <data name="EXIT_CONFIRMATION" xml:space="preserve">
+    <value>Exit Confirmation</value>
+  </data>
+  <data name="GET_CHILDPAGES_URL" xml:space="preserve">
+    <value>GetChildPagesUrl</value>
+  </data>
+  <data name="GET_PAGEBY_TITLE_KEY_URL" xml:space="preserve">
+    <value>GetPageByTitleAndKeyUrl</value>
+  </data>
+  <data name="INCLUDE_PAGECONTENT_KEY" xml:space="preserve">
+    <value>includePageContent</value>
+  </data>
+  <data name="INVALID_CREDENTIALS" xml:space="preserve">
+    <value>You entered a invalid credentials.</value>
+  </data>
+  <data name="KEY" xml:space="preserve">
+    <value>key</value>
+  </data>
+  <data name="LOGIN_ERROR" xml:space="preserve">
+    <value>Login Error</value>
+  </data>
+  <data name="NAME" xml:space="preserve">
+    <value>name</value>
+  </data>
+  <data name="PARENT_BUSINESS_CASE_TITLE_KEY" xml:space="preserve">
+    <value>ParentBusinessCaseTitle</value>
+  </data>
+  <data name="PASSWORD_KEY" xml:space="preserve">
+    <value>password</value>
+  </data>
+  <data name="UPDATEPAGE_URL_KEY" xml:space="preserve">
+    <value>UpdatePageUrl</value>
+  </data>
+  <data name="USERNAME_KEY" xml:space="preserve">
+    <value>username</value>
+  </data>
 </root>
