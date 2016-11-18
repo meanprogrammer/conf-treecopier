@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/TreeCopier/TreeCopier.WinForms/bin/Debug
+/TreeCopier/TreeCopier.WinForms/obj/Debug
+*.suo
