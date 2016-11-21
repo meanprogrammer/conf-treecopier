@@ -29,13 +29,14 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.MaincomboBox = new System.Windows.Forms.ComboBox();
-            this.TargetcomboBox = new System.Windows.Forms.ComboBox();
             this.ConfluencetreeView = new System.Windows.Forms.TreeView();
+            this.MaincomboBox = new System.Windows.Forms.ComboBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.ConfluencetreeView2 = new System.Windows.Forms.TreeView();
+            this.TargetcomboBox = new System.Windows.Forms.ComboBox();
             this.ConfluenceBackgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.ConfluenceBackgroundWorker2 = new System.ComponentModel.BackgroundWorker();
-            this.ConfluencetreeView2 = new System.Windows.Forms.TreeView();
+            this.Copybutton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -51,16 +52,13 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = " Main ";
             // 
-            // groupBox2
+            // ConfluencetreeView
             // 
-            this.groupBox2.Controls.Add(this.ConfluencetreeView2);
-            this.groupBox2.Controls.Add(this.TargetcomboBox);
-            this.groupBox2.Location = new System.Drawing.Point(388, 12);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(370, 507);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = " Target ";
+            this.ConfluencetreeView.CheckBoxes = true;
+            this.ConfluencetreeView.Location = new System.Drawing.Point(7, 58);
+            this.ConfluencetreeView.Name = "ConfluencetreeView";
+            this.ConfluencetreeView.Size = new System.Drawing.Size(357, 443);
+            this.ConfluencetreeView.TabIndex = 1;
             // 
             // MaincomboBox
             // 
@@ -73,6 +71,25 @@
             this.MaincomboBox.TabIndex = 0;
             this.MaincomboBox.SelectedIndexChanged += new System.EventHandler(this.MaincomboBox_SelectedIndexChanged);
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.ConfluencetreeView2);
+            this.groupBox2.Controls.Add(this.TargetcomboBox);
+            this.groupBox2.Location = new System.Drawing.Point(388, 12);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(370, 507);
+            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = " Target ";
+            // 
+            // ConfluencetreeView2
+            // 
+            this.ConfluencetreeView2.CheckBoxes = true;
+            this.ConfluencetreeView2.Location = new System.Drawing.Point(7, 58);
+            this.ConfluencetreeView2.Name = "ConfluencetreeView2";
+            this.ConfluencetreeView2.Size = new System.Drawing.Size(357, 443);
+            this.ConfluencetreeView2.TabIndex = 2;
+            // 
             // TargetcomboBox
             // 
             this.TargetcomboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -83,14 +100,6 @@
             this.TargetcomboBox.Size = new System.Drawing.Size(357, 32);
             this.TargetcomboBox.TabIndex = 1;
             this.TargetcomboBox.SelectedIndexChanged += new System.EventHandler(this.TargetcomboBox_SelectedIndexChanged);
-            // 
-            // ConfluencetreeView
-            // 
-            this.ConfluencetreeView.CheckBoxes = true;
-            this.ConfluencetreeView.Location = new System.Drawing.Point(7, 58);
-            this.ConfluencetreeView.Name = "ConfluencetreeView";
-            this.ConfluencetreeView.Size = new System.Drawing.Size(357, 443);
-            this.ConfluencetreeView.TabIndex = 1;
             // 
             // ConfluenceBackgroundWorker
             // 
@@ -104,19 +113,22 @@
             this.ConfluenceBackgroundWorker2.DoWork += new System.ComponentModel.DoWorkEventHandler(this.ConfluenceBackgroundWorker2_DoWork);
             this.ConfluenceBackgroundWorker2.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.ConfluenceBackgroundWorker2_RunWorkerCompleted);
             // 
-            // ConfluencetreeView2
+            // Copybutton
             // 
-            this.ConfluencetreeView2.CheckBoxes = true;
-            this.ConfluencetreeView2.Location = new System.Drawing.Point(7, 58);
-            this.ConfluencetreeView2.Name = "ConfluencetreeView2";
-            this.ConfluencetreeView2.Size = new System.Drawing.Size(357, 443);
-            this.ConfluencetreeView2.TabIndex = 2;
+            this.Copybutton.Location = new System.Drawing.Point(662, 525);
+            this.Copybutton.Name = "Copybutton";
+            this.Copybutton.Size = new System.Drawing.Size(96, 39);
+            this.Copybutton.TabIndex = 2;
+            this.Copybutton.Text = "Copy";
+            this.Copybutton.UseVisualStyleBackColor = true;
+            this.Copybutton.Click += new System.EventHandler(this.Copybutton_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(830, 523);
+            this.ClientSize = new System.Drawing.Size(830, 600);
+            this.Controls.Add(this.Copybutton);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "Form1";
@@ -138,6 +150,7 @@
         private System.ComponentModel.BackgroundWorker ConfluenceBackgroundWorker;
         private System.Windows.Forms.TreeView ConfluencetreeView2;
         private System.ComponentModel.BackgroundWorker ConfluenceBackgroundWorker2;
+        private System.Windows.Forms.Button Copybutton;
     }
 }
 
