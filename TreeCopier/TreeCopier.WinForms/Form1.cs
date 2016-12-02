@@ -65,11 +65,6 @@ namespace TreeCopier.WinForms
 
         private void FormIsWorking(bool enabled)
         {
-            //this.ParentSpaceComboBox.Enabled = enabled;
-            //this.RunButton.Enabled = enabled;
-            //this.CancelButton.Enabled = enabled;
-            //this.CleanUpButton.Enabled = enabled;
-
             string status = string.Empty;
             status = ((enabled == false) ? "Work in progress." : "Work Complete.");
             this.Log(status);
@@ -89,13 +84,12 @@ namespace TreeCopier.WinForms
             if (e.Result != null)
             {
                 this.ConfluencetreeView.Nodes.Add(e.Result as TreeNode);
-                //this.ConfluencetreeView.ExpandAll();
                 this.ConfluencetreeView.Nodes[0].EnsureVisible();
                 FormIsWorking(true);
             }
         }
 
-        private void ConfluenceBackgroundWorker2_DoWork(object sender, DoWorkEventArgs e)
+        private void ConfluenceBackgroundWorkerRIGHT_DoWork(object sender, DoWorkEventArgs e)
         {
             if (e.Argument != null && !string.IsNullOrEmpty(e.Argument.ToString()))
             {
@@ -104,12 +98,11 @@ namespace TreeCopier.WinForms
             }
         }
 
-        private void ConfluenceBackgroundWorker2_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void ConfluenceBackgroundWorkerRIGHT_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             if (e.Result != null)
             {
                 this.ConfluencetreeView2.Nodes.Add(e.Result as TreeNode);
-                //this.ConfluencetreeView.ExpandAll();
                 this.ConfluencetreeView2.Nodes[0].EnsureVisible();
                 FormIsWorking(true);
             }

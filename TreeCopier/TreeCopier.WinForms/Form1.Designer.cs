@@ -110,8 +110,8 @@
             // ConfluenceBackgroundWorker2
             // 
             this.ConfluenceBackgroundWorker2.WorkerReportsProgress = true;
-            this.ConfluenceBackgroundWorker2.DoWork += new System.ComponentModel.DoWorkEventHandler(this.ConfluenceBackgroundWorker2_DoWork);
-            this.ConfluenceBackgroundWorker2.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.ConfluenceBackgroundWorker2_RunWorkerCompleted);
+            this.ConfluenceBackgroundWorker2.DoWork += new System.ComponentModel.DoWorkEventHandler(this.ConfluenceBackgroundWorkerRIGHT_DoWork);
+            this.ConfluenceBackgroundWorker2.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.ConfluenceBackgroundWorkerRIGHT_RunWorkerCompleted);
             // 
             // Copybutton
             // 
@@ -127,7 +127,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(830, 600);
+            this.ClientSize = new System.Drawing.Size(769, 573);
             this.Controls.Add(this.Copybutton);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
