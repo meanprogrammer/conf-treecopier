@@ -41,6 +41,25 @@ namespace ConfluenceAutomator.Library
         public ChildPagesOutput_Extensions extensions { get; set; }
         public ChildPagesOutput_Links _links { get; set; }
         public ChildPagesOutput_Expandable _expandable { get; set; }
+
+        public string ParentSpace
+        {
+            get
+            { 
+                string result = string.Empty;
+                if (_expandable != null)
+                {
+                    if (!string.IsNullOrEmpty(_expandable.space))
+                    {
+                        result = _expandable.space.Split(new string[]{"/"}, StringSplitOptions.RemoveEmptyEntries).Last();
+                    }
+                }
+                return result;
+            }
+        }
+
+        //CUSTOM
+        public List<ChildPagesOutput_Result> Children { get; set; }
     }
 
     public class ChildPagesOutput_Links2

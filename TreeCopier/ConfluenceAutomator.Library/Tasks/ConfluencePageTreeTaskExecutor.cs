@@ -126,6 +126,11 @@ namespace ConfluenceAutomator.Library
             return HttpClientHelper.ExecutePost<SpaceOutput>(url, payload, this.logger);
         }
 
+        public ChildPagesOutput_Result CreateChildPageX(string url, string payload)
+        {
+            return HttpClientHelper.ExecutePost<ChildPagesOutput_Result>(url, payload, this.logger);
+        }
+
         public ChildPageInput CreateChildPageInstance(string key, string rootId, string title, string value)
         {
             ChildPageInput cp = new ChildPageInput();

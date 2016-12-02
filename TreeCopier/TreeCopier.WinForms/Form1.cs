@@ -1,4 +1,5 @@
 ﻿using ConfluenceAutomator.Library;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,9 +27,9 @@ namespace TreeCopier.WinForms
             AllSpaces r = confSpaceService.Execute();
             this.MaincomboBox.ValueMember = Strings.KEY;
             this.MaincomboBox.DisplayMember = Strings.NAME;
-            r.results.Insert(0, new Result() { id =0, name = "--SELECT--", key=string.Empty, type=string.Empty });
+            r.results.Insert(0, new Result() { id = 0, name = "--SELECT--", key = string.Empty, type = string.Empty });
             this.MaincomboBox.DataSource = r.results;
-            
+
 
             AllSpaces r2 = confSpaceService.Execute();
 
@@ -131,15 +132,144 @@ namespace TreeCopier.WinForms
             }
         }
 
+        private ChildPagesOutput_Result GetFirstChecked()
+        {
+            ChildPagesOutput_Result result = null;
+            foreach (TreeNode node in this.ConfluencetreeView.Nodes)
+            {
+                if (node.Checked)
+                {
+                    return node.Tag as ChildPagesOutput_Result;
+                }
+                result = GetFirstChecked(node.Nodes);
+                if (result != null)
+                    break;
+            }
+            return result;
+        }
+
+        private ChildPagesOutput_Result GetFirstChecked(TreeNodeCollection nodes)
+        {
+            ChildPagesOutput_Result result = null;
+            foreach (TreeNode node in nodes)
+            {
+                if (node.Checked)
+                {
+                    return node.Tag as ChildPagesOutput_Result;
+                }
+                result = GetFirstChecked(node.Nodes);
+                if (result != null)
+                    break;
+            }
+            return result;
+        }
+
+
         private void Copybutton_Click(object sender, EventArgs e)
         {
-            List<ChildPagesOutput_Result> mainIds = new List<ChildPagesOutput_Result>();
-            GetChecked(mainIds, this.ConfluencetreeView.Nodes);
+            ConfluenceContext.SaveCredentials("vd2", "Welcome4");
 
-            List<ChildPagesOutput_Result> targetIds = new List<ChildPagesOutput_Result>();
-            GetChecked(targetIds, this.ConfluencetreeView2.Nodes);
+            ChildPagesOutput_Result firstchecked = GetFirstChecked();
+            ConfluencePageTreeTaskExecutor task = new ConfluencePageTreeTaskExecutor();
+            /*
+            if (firstchecked != null)
+            {
+                task.CreateChildPageX(
+                    AppSettingsHelper.GetValue(Strings.CREATE_PAGE_URL_KEY),
+                    JsonConvert.SerializeObject(
+                        task.CreateChildPageInstance(firstchecked.ParentSpace, firstchecked.id, "Sample Title", string.Format(AppSettingsHelper.GetValue(Strings.INCLUDE_PAGECONTENT_KEY), "0. Planning Phase", "OBD")
+                    //string.Format("{0} - {1}", this.KeyTextbox.Text.Trim(), bMap.FromPageTitle),
+                    //string.Format(AppSettingsHelper.GetValue(Strings.INCLUDE_PAGECONTENT_KEY), bMap.FromPageTitle, this.KeyTextbox.Text.Trim())
+                        )
+                    )
+                );
+            }
+            return;
+            */
+            ChildPagesOutput_Result lastProcessed = firstchecked;
+            string leftSideSpace = firstchecked.ParentSpace;
+            string currentParentId = firstchecked.id;
+            foreach (TreeNode node in this.ConfluencetreeView2.Nodes[0].Nodes)
+            {
+                if (node.Checked && node.Tag != null)
+                {
+                    ChildPagesOutput_Result tag = node.Tag as ChildPagesOutput_Result;
+                    if (tag != null)
+                    {
+                        lastProcessed = task.CreateChildPageX(
+                            AppSettingsHelper.GetValue(Strings.CREATE_PAGE_URL_KEY),
+                            JsonConvert.SerializeObject(
+                                task.CreateChildPageInstance(leftSideSpace, currentParentId, tag.title, string.Format(AppSettingsHelper.GetValue(Strings.INCLUDE_PAGECONTENT_KEY), tag.title, tag.ParentSpace)
+                                )
+                            )
+                        );
+
+                        if (node.Nodes.Count > 0)
+                        {
+                            currentParentId = lastProcessed.id;
+                            CreateChildrenNodes(task, lastProcessed, currentParentId, leftSideSpace, node.Nodes);
+                            currentParentId = firstchecked.id;
+                        }
+                    }
+                }
+            }
 
         }
+
+
+        private void CreateChildrenNodes(ConfluencePageTreeTaskExecutor task, 
+                        ChildPagesOutput_Result lastProcessed, string currentParentId, string parentSpace, TreeNodeCollection nodes)
+        {
+            string oldParentId = currentParentId;
+            foreach (TreeNode node in nodes)
+            {
+                if (node.Checked && node.Tag != null)
+                {
+                    ChildPagesOutput_Result tag = node.Tag as ChildPagesOutput_Result;
+                    if (tag != null)
+                    {
+                        lastProcessed = task.CreateChildPageX(
+                            AppSettingsHelper.GetValue(Strings.CREATE_PAGE_URL_KEY),
+                            JsonConvert.SerializeObject(
+                                task.CreateChildPageInstance(parentSpace, currentParentId, tag.title, string.Format(AppSettingsHelper.GetValue(Strings.INCLUDE_PAGECONTENT_KEY), tag.title, tag.ParentSpace)
+                                )
+                            )
+                        );
+
+                        if (node.Nodes.Count > 0)
+                        {
+                            currentParentId = lastProcessed.id;
+                            CreateChildrenNodes(task, lastProcessed, currentParentId, parentSpace, node.Nodes);
+                            currentParentId = oldParentId;
+                        }
+                    }
+                }
+            }
+        }
+
+
+        public void GetStructuredListToCopy(List<ChildPagesOutput_Result> list, TreeNodeCollection nodes)
+        {
+            foreach (TreeNode node in nodes)
+            {
+                if (node.Checked)
+                {
+
+                    list.Add(node.Tag as ChildPagesOutput_Result);
+                }
+            }
+        }
+
+        public void GetStructuredListToCopy(List<ChildPagesOutput_Result> list, TreeNode node)
+        {
+            if (node.Checked)
+            {
+                list.Add(node.Tag as ChildPagesOutput_Result);
+            }
+            GetStructuredListToCopy(list, node.Nodes);
+        }
+
+
 
 
         private void GetChecked(List<ChildPagesOutput_Result> ids, TreeNodeCollection nodes)
