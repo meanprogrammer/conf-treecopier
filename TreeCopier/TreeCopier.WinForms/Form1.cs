@@ -247,47 +247,5 @@ namespace TreeCopier.WinForms
             }
         }
 
-
-        public void GetStructuredListToCopy(List<ChildPagesOutput_Result> list, TreeNodeCollection nodes)
-        {
-            foreach (TreeNode node in nodes)
-            {
-                if (node.Checked)
-                {
-
-                    list.Add(node.Tag as ChildPagesOutput_Result);
-                }
-            }
-        }
-
-        public void GetStructuredListToCopy(List<ChildPagesOutput_Result> list, TreeNode node)
-        {
-            if (node.Checked)
-            {
-                list.Add(node.Tag as ChildPagesOutput_Result);
-            }
-            GetStructuredListToCopy(list, node.Nodes);
-        }
-
-
-
-
-        private void GetChecked(List<ChildPagesOutput_Result> ids, TreeNodeCollection nodes)
-        {
-            foreach (TreeNode n in nodes)
-            {
-                GetChecked(ids, n);
-            }
-        }
-
-        private void GetChecked(List<ChildPagesOutput_Result> ids, TreeNode node)
-        {
-            if (node.Checked)
-            {
-                ids.Add(node.Tag as ChildPagesOutput_Result);
-            }
-
-            GetChecked(ids, node.Nodes);
-        }
     }
 }
