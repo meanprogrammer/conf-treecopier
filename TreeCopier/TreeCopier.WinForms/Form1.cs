@@ -14,6 +14,7 @@ namespace TreeCopier.WinForms
 {
     public partial class Form1 : Form, IFormLogger
     {
+        private string rightSideSpace = string.Empty;
         public Form1()
         {
             InitializeComponent();
@@ -93,6 +94,7 @@ namespace TreeCopier.WinForms
         {
             if (e.Argument != null && !string.IsNullOrEmpty(e.Argument.ToString()))
             {
+                rightSideSpace = e.Argument.ToString();
                 ConfluenceSpaceTaskExecutor confSpaceService = new ConfluenceSpaceTaskExecutor(this);
                 e.Result = confSpaceService.CreateSpaceTreeNode(confSpaceService.Execute().results.Where(x => x.key == e.Argument.ToString()).FirstOrDefault());
             }
@@ -160,28 +162,34 @@ namespace TreeCopier.WinForms
 
         private void Copybutton_Click(object sender, EventArgs e)
         {
+
+            
+
             ConfluenceContext.SaveCredentials("vd2", "Welcome4");
 
             ChildPagesOutput_Result firstchecked = GetFirstChecked();
             ConfluencePageTreeTaskExecutor task = new ConfluencePageTreeTaskExecutor();
-            /*
-            if (firstchecked != null)
-            {
-                task.CreateChildPageX(
-                    AppSettingsHelper.GetValue(Strings.CREATE_PAGE_URL_KEY),
-                    JsonConvert.SerializeObject(
-                        task.CreateChildPageInstance(firstchecked.ParentSpace, firstchecked.id, "Sample Title", string.Format(AppSettingsHelper.GetValue(Strings.INCLUDE_PAGECONTENT_KEY), "0. Planning Phase", "OBD")
-                    //string.Format("{0} - {1}", this.KeyTextbox.Text.Trim(), bMap.FromPageTitle),
-                    //string.Format(AppSettingsHelper.GetValue(Strings.INCLUDE_PAGECONTENT_KEY), bMap.FromPageTitle, this.KeyTextbox.Text.Trim())
-                        )
-                    )
-                );
-            }
-            return;
-            */
+
             ChildPagesOutput_Result lastProcessed = firstchecked;
             string leftSideSpace = firstchecked.ParentSpace;
             string currentParentId = firstchecked.id;
+
+
+            var projectNode = this.ConfluencetreeView2.Nodes[0];
+
+            if (projectNode != null)
+            {
+                lastProcessed = task.CreateChildPageX(
+                            AppSettingsHelper.GetValue(Strings.CREATE_PAGE_URL_KEY),
+                            JsonConvert.SerializeObject(
+                                task.CreateChildPageInstance(leftSideSpace, currentParentId, projectNode.Text, string.Format(AppSettingsHelper.GetValue(Strings.INCLUDE_PAGECONTENT_KEY), string.Format("{0} Home",projectNode.Text), rightSideSpace)
+                                )
+                            )
+                        );
+            }
+            firstchecked = lastProcessed;
+            currentParentId = lastProcessed.id;
+
             foreach (TreeNode node in this.ConfluencetreeView2.Nodes[0].Nodes)
             {
                 if (node.Checked && node.Tag != null)
@@ -207,6 +215,8 @@ namespace TreeCopier.WinForms
                 }
             }
 
+
+            MessageBox.Show("All Done.");
         }
 
 
@@ -236,6 +246,37 @@ namespace TreeCopier.WinForms
                             currentParentId = oldParentId;
                         }
                     }
+                }
+            }
+        }
+
+
+        // Updates all child tree nodes recursively.
+        private void CheckAllChildNodes(TreeNode treeNode, bool nodeChecked)
+        {
+            foreach (TreeNode node in treeNode.Nodes)
+            {
+                node.Checked = nodeChecked;
+                if (node.Nodes.Count > 0)
+                {
+                    // If the current node has child nodes, call the CheckAllChildsNodes method recursively.
+                    this.CheckAllChildNodes(node, nodeChecked);
+                }
+            }
+        }
+
+        // NOTE   This code can be added to the BeforeCheck event handler instead of the AfterCheck event.
+        // After a tree node's Checked property is changed, all its child nodes are updated to the same value.
+        private void node_AfterCheck(object sender, TreeViewEventArgs e)
+        {
+            // The code only executes if the user caused the checked state to change.
+            if (e.Action != TreeViewAction.Unknown)
+            {
+                if (e.Node.Nodes.Count > 0)
+                {
+                    /* Calls the CheckAllChildNodes method, passing in the current 
+                    Checked value of the TreeNode whose checked state changed. */
+                    this.CheckAllChildNodes(e.Node, e.Node.Checked);
                 }
             }
         }

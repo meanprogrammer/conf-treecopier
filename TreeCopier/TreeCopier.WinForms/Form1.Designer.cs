@@ -89,6 +89,7 @@
             this.ConfluencetreeView2.Name = "ConfluencetreeView2";
             this.ConfluencetreeView2.Size = new System.Drawing.Size(357, 443);
             this.ConfluencetreeView2.TabIndex = 2;
+            this.ConfluencetreeView2.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.node_AfterCheck);
             // 
             // TargetcomboBox
             // 
