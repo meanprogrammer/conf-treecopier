@@ -200,7 +200,7 @@ namespace TreeCopier.WinForms
                         lastProcessed = task.CreateChildPageX(
                             AppSettingsHelper.GetValue(Strings.CREATE_PAGE_URL_KEY),
                             JsonConvert.SerializeObject(
-                                task.CreateChildPageInstance(leftSideSpace, currentParentId, tag.title, string.Format(AppSettingsHelper.GetValue(Strings.INCLUDE_PAGECONTENT_KEY), tag.title, tag.ParentSpace)
+                                task.CreateChildPageInstance(leftSideSpace, currentParentId, string.Format("{0} - {1}",tag.ParentSpace, tag.title), string.Format(AppSettingsHelper.GetValue(Strings.INCLUDE_PAGECONTENT_KEY), tag.title, tag.ParentSpace)
                                 )
                             )
                         );
@@ -234,7 +234,7 @@ namespace TreeCopier.WinForms
                         lastProcessed = task.CreateChildPageX(
                             AppSettingsHelper.GetValue(Strings.CREATE_PAGE_URL_KEY),
                             JsonConvert.SerializeObject(
-                                task.CreateChildPageInstance(parentSpace, currentParentId, tag.title, string.Format(AppSettingsHelper.GetValue(Strings.INCLUDE_PAGECONTENT_KEY), tag.title, tag.ParentSpace)
+                                task.CreateChildPageInstance(parentSpace, currentParentId, string.Format("{0} - {1}", tag.ParentSpace, tag.title), string.Format(AppSettingsHelper.GetValue(Strings.INCLUDE_PAGECONTENT_KEY), tag.title, tag.ParentSpace)
                                 )
                             )
                         );
