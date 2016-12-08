@@ -37,6 +37,7 @@
             this.ConfluenceBackgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.ConfluenceBackgroundWorker2 = new System.ComponentModel.BackgroundWorker();
             this.Copybutton = new System.Windows.Forms.Button();
+            this.AppendButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -116,7 +117,7 @@
             // 
             // Copybutton
             // 
-            this.Copybutton.Location = new System.Drawing.Point(662, 525);
+            this.Copybutton.Location = new System.Drawing.Point(662, 526);
             this.Copybutton.Name = "Copybutton";
             this.Copybutton.Size = new System.Drawing.Size(96, 39);
             this.Copybutton.TabIndex = 2;
@@ -124,11 +125,22 @@
             this.Copybutton.UseVisualStyleBackColor = true;
             this.Copybutton.Click += new System.EventHandler(this.Copybutton_Click);
             // 
+            // AppendButton
+            // 
+            this.AppendButton.Location = new System.Drawing.Point(560, 526);
+            this.AppendButton.Name = "AppendButton";
+            this.AppendButton.Size = new System.Drawing.Size(96, 39);
+            this.AppendButton.TabIndex = 4;
+            this.AppendButton.Text = "Append";
+            this.AppendButton.UseVisualStyleBackColor = true;
+            this.AppendButton.Click += new System.EventHandler(this.AppendButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(769, 573);
+            this.Controls.Add(this.AppendButton);
             this.Controls.Add(this.Copybutton);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -152,6 +164,7 @@
         private System.Windows.Forms.TreeView ConfluencetreeView2;
         private System.ComponentModel.BackgroundWorker ConfluenceBackgroundWorker2;
         private System.Windows.Forms.Button Copybutton;
+        private System.Windows.Forms.Button AppendButton;
     }
 }
 

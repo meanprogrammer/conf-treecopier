@@ -57,9 +57,6 @@ namespace ConfluenceAutomator.Library
                 return result;
             }
         }
-
-        //CUSTOM
-        public List<ChildPagesOutput_Result> Children { get; set; }
     }
 
     public class ChildPagesOutput_Links2
