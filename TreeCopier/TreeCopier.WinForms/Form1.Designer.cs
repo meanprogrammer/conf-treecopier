@@ -133,6 +133,7 @@
             this.AppendButton.TabIndex = 4;
             this.AppendButton.Text = "Append";
             this.AppendButton.UseVisualStyleBackColor = true;
+            this.AppendButton.Visible = false;
             this.AppendButton.Click += new System.EventHandler(this.AppendButton_Click);
             // 
             // Form1

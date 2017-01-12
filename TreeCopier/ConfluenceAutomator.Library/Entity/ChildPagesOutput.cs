@@ -42,6 +42,8 @@ namespace ConfluenceAutomator.Library
         public ChildPagesOutput_Links _links { get; set; }
         public ChildPagesOutput_Expandable _expandable { get; set; }
 
+        public List<ChildPagesOutput_Result> Childrens { get; set; }
+
         public string ParentSpace
         {
             get

@@ -22,7 +22,7 @@ namespace TreeCopier.WinForms
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            ConfluenceContext.SaveCredentials("vd2", "Welcome4");
+            ConfluenceContext.SaveCredentials("vd2", "Welcome5");
 
             ConfluenceSpaceTaskExecutor confSpaceService = new ConfluenceSpaceTaskExecutor(this);
             AllSpaces r = confSpaceService.Execute();
@@ -162,7 +162,12 @@ namespace TreeCopier.WinForms
 
         private void Copybutton_Click(object sender, EventArgs e)
         {
-            ConfluenceContext.SaveCredentials("vd2", "Welcome4");
+            if (MaincomboBox.SelectedIndex == 0 || TargetcomboBox.SelectedIndex == 0)
+            {
+                return;
+            }
+
+            ConfluenceContext.SaveCredentials("vd2", "Welcome5");
 
             ChildPagesOutput_Result firstchecked = GetFirstChecked();
             ConfluencePageTreeTaskExecutor task = new ConfluencePageTreeTaskExecutor();
@@ -286,7 +291,7 @@ namespace TreeCopier.WinForms
 
         private void AppendButton_Click(object sender, EventArgs e)
         {
-            ConfluenceContext.SaveCredentials("vd2", "Welcome4");
+            ConfluenceContext.SaveCredentials("vd2", "Welcome5");
 
             ChildPagesOutput_Result firstchecked = GetFirstChecked();
             ConfluencePageTreeTaskExecutor task = new ConfluencePageTreeTaskExecutor();
