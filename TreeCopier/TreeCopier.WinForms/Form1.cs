@@ -22,7 +22,7 @@ namespace TreeCopier.WinForms
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            ConfluenceContext.SaveCredentials("vd2", "Welcome5");
+            ConfluenceContext.SaveCredentials(AppSettingsHelper.GetValue("username"), AppSettingsHelper.GetValue("password"));
 
             ConfluenceSpaceTaskExecutor confSpaceService = new ConfluenceSpaceTaskExecutor(this);
             AllSpaces r = confSpaceService.Execute();
@@ -167,7 +167,7 @@ namespace TreeCopier.WinForms
                 return;
             }
 
-            ConfluenceContext.SaveCredentials("vd2", "Welcome5");
+            ConfluenceContext.SaveCredentials(AppSettingsHelper.GetValue("username"), AppSettingsHelper.GetValue("password"));
 
             ChildPagesOutput_Result firstchecked = GetFirstChecked();
             ConfluencePageTreeTaskExecutor task = new ConfluencePageTreeTaskExecutor();
@@ -291,7 +291,7 @@ namespace TreeCopier.WinForms
 
         private void AppendButton_Click(object sender, EventArgs e)
         {
-            ConfluenceContext.SaveCredentials("vd2", "Welcome5");
+            ConfluenceContext.SaveCredentials(AppSettingsHelper.GetValue("username"), AppSettingsHelper.GetValue("password"));
 
             ChildPagesOutput_Result firstchecked = GetFirstChecked();
             ConfluencePageTreeTaskExecutor task = new ConfluencePageTreeTaskExecutor();

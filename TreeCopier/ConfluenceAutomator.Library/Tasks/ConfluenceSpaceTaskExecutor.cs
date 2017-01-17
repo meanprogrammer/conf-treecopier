@@ -58,7 +58,8 @@ namespace ConfluenceAutomator.Library
                 return result;
 
             string childUrl = AppSettingsHelper.GetValue(Strings.BASEURL_KEY) + space._expandable.homepage + Strings.CHILDPAGE_PATH;
-            var rootPages = HttpClientHelper.ExecuteGet<ChildPagesOutput>(childUrl, string.Empty, "vd2:Welcome5", this.logger);
+            var rootPages = HttpClientHelper.ExecuteGet<ChildPagesOutput>(childUrl, string.Empty,
+                string.Format("{0}:{1}", AppSettingsHelper.GetValue("username"), AppSettingsHelper.GetValue("password")), this.logger);
             CreateIndividualTreeNodeWeb(result, rootPages.results);
 
             return result;
